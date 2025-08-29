@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\About;
+use App\Models\BlogCategory;
+use App\Models\BlogPost;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
@@ -73,4 +75,37 @@ class FrontendController extends Controller
         }
     }
     //End Method
+
+    //About page
+    public function BlogPage(){
+
+        $blogcat = BlogCategory::latest()->withCount('posts')->get();
+        $post = BlogPost::latest()->limit(5)->get();
+        $recentpost = BlogPost::latest()->limit(3)->get();
+        return view('home.blog.list_blog', compact('blogcat', 'post', 'recentpost'));
+    }
+    //End Method
+
+    public function BlogDetails($slug){
+
+        $blogcat = BlogCategory::latest()->withCount('posts')->get();
+        $recentpost = BlogPost::latest()->limit(3)->get();
+
+        $post = BlogPost::where('post_slug', $slug)->first();
+        return view('home.blog.blog_details', compact('post', 'blogcat', 'recentpost'));
+    }
+    //End Method
+
+    public function BlogCategory($id){
+
+        $blogcat = BlogCategory::latest()->withCount('posts')->get();//عشان اعرض الكاتوجري بالعدد بتاعها
+        $recentpost = BlogPost::latest()->limit(3)->get();
+
+        $post = BlogPost::where('blogcat_id', $id)->get();//عشان اعرض كل البوست الخاصه بالكاتوجري اللي ضغطت عليها
+        $categoryname = BlogCategory::where('id', $id)->first();//هيجيب ليا اسم الكاتوجري اللي ضغطت عليها
+
+        return view('home.blog.blog_category', compact('post', 'blogcat', 'recentpost', 'categoryname'));
+    }
+    //End Method
+
 }

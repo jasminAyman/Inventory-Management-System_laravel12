@@ -32,7 +32,7 @@
 
 <div class="lonyo-section-padding3">
     <div class="container">
-      <div class="row">
+         <div class="row">
 
         <div class="col-lg-5">
           <div class="lonyo-about-us-thumb2 pr-51" data-aos="fade-up" data-aos-duration="700">
@@ -116,8 +116,8 @@
       <div class="row">
 
         @foreach ($teams as $team)
-            
-        
+
+
         <div class="col-lg-3 col-md-6">
           <div class="lonyo-team-wrap" data-aos="fade-up" data-aos-duration="500">
             <div class="lonyo-team-thumb">

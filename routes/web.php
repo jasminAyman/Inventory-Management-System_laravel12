@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\TeamController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\FrontendController;
 
 Route::get('/', function () {
@@ -171,6 +172,42 @@ Route::middleware('auth')->group(function () {
     Route::controller(FrontendController::class)->group(function(){
         Route::get('/get/aboutus', 'GetAboutUs')->name('get.aboutus');
         Route::post('/update/aboutus', 'UpdateAboutUs')->name('update.about');
+    });
+
+});
+/*...................................................................................... */
+
+//our Blog page
+Route::get('/blog', [FrontendController::class, 'BlogPage'])->name('blog.page');
+Route::get('/blog/details/{slug}', [FrontendController::class, 'BlogDetails']);
+Route::get('/blog/category/{id}', [FrontendController::class, 'BlogCategory']);//لعرض البوست الخاصه ب كاتوجري معينه
+
+Route::middleware('auth')->group(function () {
+    //routes for data in blog page
+    Route::controller(BlogController::class)->group(function(){
+        Route::get('/blog/category', 'BlogCategory')->name('all.blog.category');
+
+        Route::post('/store/blog/category', 'StoreBlogCategory')->name('store.blog.category');
+
+        Route::get('/edit/blog/category/{id}', 'EditBlogCategory');
+
+        Route::post('/update/blog/category', 'UpdateBlogCategory')->name('update.blog.category');
+
+        Route::get('/delete/blog/category/{id}', 'DeleteBlogCategory')->name('delete.blog.category');
+        /*...................................................................................... */
+
+        //routes for posts in blog page
+        Route::get('/all/blog/post', 'AllBlogPost')->name('all.blog.post');
+
+        Route::get('/add/blog/post', 'AddBlogPost')->name('add.blog.post');
+        Route::post('/store/blog/post', 'StoreBlogPost')->name('store.blog.post');
+
+        Route::get('/edit/blog/post/{id}', 'EditBlogPost')->name('edit.blog.post');
+        Route::post('/update/blog/post', 'UpdateBlogPost')->name('update.blog.post');
+
+        Route::get('/delete/blog/post/{id}', 'DeleteBlogPost')->name('delete.blog.post');
+
+
     });
 
 });

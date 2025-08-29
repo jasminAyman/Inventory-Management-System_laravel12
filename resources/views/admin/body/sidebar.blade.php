@@ -206,18 +206,33 @@
                 <li class="menu-title mt-2">General</li>
 
                 <li>
-                    <a href="#sidebarBaseui" data-bs-toggle="collapse">
-                        <i data-feather="package"></i>
-                        <span> Components </span>
+                    <a href="#Blogcat" data-bs-toggle="collapse">
+                        <i data-feather="alert-octagon"></i>
+                        <span> Blog Category Setup </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarBaseui">
+                    <div class="collapse" id="Blogcat">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="ui-accordions.html" class="tp-link">Accordions</a>
+                                <a href="{{ route('all.blog.category') }}" class="tp-link">Blog Category</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#Blogpost" data-bs-toggle="collapse">
+                        <i data-feather="alert-octagon"></i>
+                        <span> Post Setup </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="Blogpost">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('all.blog.post') }}" class="tp-link">All Blog Post</a>
                             </li>
                             <li>
-                                <a href="ui-alerts.html" class="tp-link">Alerts</a>
+                                <a href="{{ route('add.blog.post') }}" class="tp-link">Add Blog Post</a>
                             </li>
                         </ul>
                     </div>
