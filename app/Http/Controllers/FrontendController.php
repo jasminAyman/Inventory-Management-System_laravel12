@@ -76,7 +76,7 @@ class FrontendController extends Controller
     }
     //End Method
 
-    //About page
+    //Blog page
     public function BlogPage(){
 
         $blogcat = BlogCategory::latest()->withCount('posts')->get();
